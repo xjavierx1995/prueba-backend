@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DocumentoCorporativo extends Model
 {
-    use SoftDeletes;
     protected $table = 'documentos_corporativos';
-    public $timestamps = true;
+    public $timestamps = false;
     public $fillable = [
         'corporativos_id',
         'documentos_id',
