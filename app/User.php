@@ -27,7 +27,6 @@ class User extends Authenticatable
         'S_FotoPerfilUrl',
         'S_Activo',
         'password',
-        'S_FotoPerfilUrl',
         'verification_token',
         'verified',
     ];
