@@ -20,5 +20,6 @@ class Corporativo extends Model
         'S_SystemUrl',
         'S_Activo',
         'D_FechaIncorporacion',
+        'usuarios_id',
     ];
 }
