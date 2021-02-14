@@ -112,7 +112,40 @@ class CorporativoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules =  [
+            'S_NombreCorto' => 'required',
+            'S_NombreCompleto' => 'required',
+            'S_DBName' => 'required',
+            'S_DBUsuario' => 'required',
+            'S_DBPassword' => 'required',
+            'S_SystemUrl' => 'required',
+            'D_FechaIncorporacion' => 'required',
+            // 'S_LogoURL' => 'required|image|mimes:jpeg,png',
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+
+            return $this->errorResponse([$validator->errors(),Response::HTTP_UNPROCESSABLE_ENTITY], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $hashNameFile = "";
+
+        if ($request->file('S_LogoURL')) {
+
+            $file = $request->file('S_LogoURL');
+            $hashNameFile = '/corporativo/logos/'. $file->hashName();
+            $file->store('public/corporativo/logos');
+        }
+
+        $corporativo = Corporativo::findOrfail($id);
+        $corporativo->fill($request->all());
+        $corporativo->S_LogoURL = $hashNameFile;
+        $corporativo->usuarios_id = $request->user()->id;
+        $corporativo->update();
+
+        return $this->succesResponse($corporativo);
     }
 
     /**
