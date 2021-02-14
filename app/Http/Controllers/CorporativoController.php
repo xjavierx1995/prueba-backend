@@ -123,6 +123,8 @@ class CorporativoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $corporativo = Corporativo::findOrfail($id);
+        $corporativo->delete();
+        return $this->succesResponse($corporativo);
     }
 }
