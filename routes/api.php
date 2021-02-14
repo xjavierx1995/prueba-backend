@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CorporativoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,12 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
+});
+
+Route::group(['middleware' => 'auth:api'], function () {
+
+    Route::resource('corporativo', 'CorporativoController');
+
 });
 
 Route::get('/test', function () {
