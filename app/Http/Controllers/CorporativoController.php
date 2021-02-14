@@ -89,7 +89,8 @@ class CorporativoController extends Controller
      */
     public function show($id)
     {
-        //
+        $corporativo = Corporativo::findOrFail($id);
+        return $this->succesResponse($corporativo);
     }
 
     /**
