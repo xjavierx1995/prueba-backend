@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         $credentials = request(['email', 'password']);
 
-        if (!Auth::attempt($credentials)) return $this->errorResponse('Unauthorized',Response::HTTP_UNAUTHORIZED);
+        if (!Auth::attempt($credentials)) return $this->errorResponse('Estas credenciales no se encuentran en nuestros registros',Response::HTTP_UNAUTHORIZED);
 
         $user = $request->user();
 
