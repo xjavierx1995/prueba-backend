@@ -20,4 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login')->name('login');
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('logout', 'AuthController@logout')->name('logout');
+    });
+});
+
+Route::get('/test', function () {
+    return 'welcome to API';
 });

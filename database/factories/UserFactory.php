@@ -24,6 +24,6 @@ $factory->define(User::class, function (Faker $faker) {
         'S_Nombre' => $faker->name,
         'S_Apellido' => $faker->lastName, // password
         'S_FotoPerfilUrl' => $faker->imageUrl($width = 640, $height = 480),
-        'password' => '12345',
+        'password' => bcrypt('12345'),
     ];
 });
